@@ -1,0 +1,13 @@
+.inputbox{
+    padding: 0.3rem;
+    border-radius: 0.5rem;
+    border: none;
+    background-color: white;
+    font-size: 1rem;
+    font-weight: 500;
+
+}
+.inputbox:hover{
+    border: 1px solid black;
+
+}

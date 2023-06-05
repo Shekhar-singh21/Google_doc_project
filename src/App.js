@@ -1,17 +1,20 @@
-import logo from './logo.svg';
+
 import './App.css';
-import { Slider } from '@mui/material';
+import Header from './components/organism/header/header';
+import InputSection from './components/organism/inputSection/inputSection';
+import { Provider } from 'react-redux';
+import store from './components/store/store';
 
 function App() {
   return (
     <div className="App">
-    <Slider
-  size="small"
-  defaultValue={70}
-  aria-label="Small"
-  valueLabelDisplay="auto"
-/>
-<Slider defaultValue={50} aria-label="Default" valueLabelDisplay="auto" />
+    <Provider store={store}>
+
+    <Header/>
+    <InputSection/>
+
+    </Provider>
+    
     
     </div>
   );

@@ -1,0 +1,25 @@
+.share{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background-color:rgb(208, 218, 233) ;
+    width: 90px;
+    padding: 0.5rem;
+    border-radius: 1.5rem;
+    
+}
+.profile{
+    width: 3rem;
+    height: 3rem;
+    background-color: brown;
+    border-radius: 90%;
+}
+.container{
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+.icons{
+    color: rgb(84, 80, 80);
+}

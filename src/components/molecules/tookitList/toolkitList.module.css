@@ -1,0 +1,25 @@
+.wrapper{
+    padding: 1rem;
+    margin-top: -2rem;
+}
+
+.maincontainer{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    padding: 1rem;
+    background-color:rgb(242, 238, 248) ;
+    border-radius: 2rem;
+    height: 1rem;
+    font-size: -1rem;
+}
+.counter{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+.corner{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
