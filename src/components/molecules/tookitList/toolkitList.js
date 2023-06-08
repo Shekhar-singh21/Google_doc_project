@@ -52,6 +52,16 @@ export default function ToolkitList() {
         'black', 'red', 'blue', 'green' // Add more color options as needed
       ]);
 
+      function undofun(){
+        document.execCommand("undo");
+    
+     }
+
+     function redofun(){
+        document.execCommand("redo");
+    
+     }
+
     function getFontColor(){
         dispatch(setFontColor())
     }
@@ -97,10 +107,10 @@ export default function ToolkitList() {
         <div className={style.wrapper}>
             <div className={style.maincontainer}>
             <SmallToggleButton>
-                <UTurnLeftOutlinedIcon sx={{ transform: 'rotate(90deg)' }}  onClick={getToggleUndoStack}/>
+                <UTurnLeftOutlinedIcon sx={{ transform: 'rotate(90deg)' }}  onClick={undofun}/>
                 </SmallToggleButton>
                 <SmallToggleButton>
-                <UTurnRightOutlinedIcon sx={{ transform: 'rotate(270deg)' }} onClick={getToggleRedoStack} />
+                <UTurnRightOutlinedIcon sx={{ transform: 'rotate(270deg)' }} onClick={redofun} />
                 </SmallToggleButton>
                 <SmallToggleButton>
                 <LocalPrintshopOutlinedIcon  onClick={getPrintOut}/>
