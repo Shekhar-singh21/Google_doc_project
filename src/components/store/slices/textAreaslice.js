@@ -27,7 +27,6 @@ const toolkitListSlice = createSlice({
             state.fontSize = action.payload
         },
         printTextArea: (state) => {
-            // Logic to print the textarea content
             const printContent = state.textAreaValue;
             const printWindow = window.open('', '_blank');
             printWindow.document.open();
