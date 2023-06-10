@@ -28,14 +28,16 @@ import Menu, { MenuProps } from '@mui/material/Menu';
 import RateReviewIcon from '@mui/icons-material/RateReview';
 import Divider from '@mui/material/Divider';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
-import { setCounter,printTextArea,toggleBold,toggleItalic,toggleRedoStack,toggleUndoStack , toggletextAreaSize,textAreaSize ,setFontColor} from '../../store/slices/textAreaslice';
+import { setCounter,printTextArea,toggleBold,toggleItalic,toggleRedoStack,toggleUndoStack , toggletextAreaSize,textAreaSize ,setFontColor,fileUpload,SetTextUnderLine,setIsTextAlign} from '../../store/slices/textAreaslice';
 import { useDispatch,useSelector } from 'react-redux';
 import { useState } from 'react';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import { createObjectURL } from 'url';
 
 const SmallToggleButton = styled(ToggleButton)({
-    fontSize: '1rem', padding:'0.4rem',border:'none'
+    fontSize: '1rem', padding:'0.4rem',border:'none',
+    cursor:'pointer'
   });
 
 
@@ -48,9 +50,34 @@ export default function ToolkitList() {
     const [input,setInput] = useState('');
     const textAreaValue = useSelector((state)=> state.toolkitList.textAreaValue)
     const textAreaSize = useSelector((state)=> state.toolkitList.textAreaSize)
-    const [colorOptions, setColorOptions] = useState([
-        'black', 'red', 'blue', 'green' // Add more color options as needed
-      ]);
+    const fontColor = useSelector((state)=>state.toolkitList.fontColor)
+  
+      const file = useSelector((state)=>state.toolkitList.file);
+      const textUnderLine = useSelector((state)=>state.toolkitList.textUnderLine);
+      
+
+
+
+    
+
+      const { createObjectURL } = window.URL || window.webkitURL;
+
+      function handleInsertImageClick() {
+        const fileInput = document.getElementById('fileInput');
+        if (fileInput) {
+          fileInput.click();
+        }
+      }
+    
+
+
+      function handleFileUpload(e){
+        const file = e.target.files[0];
+  const objectURL = createObjectURL(file);
+  dispatch(fileUpload(URL, objectURL));
+      }
+
+
 
       function undofun(){
         document.execCommand("undo");
@@ -63,7 +90,7 @@ export default function ToolkitList() {
      }
 
     function getFontColor(){
-        dispatch(setFontColor())
+        dispatch(setFontColor(!fontColor))
     }
 
     function getToggleTextAreaSize(){
@@ -158,7 +185,7 @@ export default function ToolkitList() {
                     <FormatItalicIcon onClick={getToggleItalic}/>
                 </SmallToggleButton>
                 <SmallToggleButton>
-                    <FormatUnderlinedIcon />
+                    <FormatUnderlinedIcon  onClick={()=>dispatch(SetTextUnderLine())}/>
                 </SmallToggleButton>
                 <SmallToggleButton >
                     <FormatColorTextIcon colorOptions  onClick={getFontColor}/>
@@ -174,11 +201,13 @@ export default function ToolkitList() {
                     <AddCommentIcon />
                 </SmallToggleButton>
                 <SmallToggleButton>
-                    <InsertPhotoIcon />
+                    <InsertPhotoIcon   onClick={handleInsertImageClick}/>
+                    <input type="file" accept="image/*" onChange={handleFileUpload} style={{ display: 'none' }} />
+                    
                 </SmallToggleButton>
                 <Divider orientation="vertical" flexItem />
                 <SmallToggleButton>
-                    <FormatAlignLeftIcon />
+                    <FormatAlignLeftIcon onClick={()=>dispatch(setIsTextAlign())} />
 
                 </SmallToggleButton>
                 <SmallToggleButton>

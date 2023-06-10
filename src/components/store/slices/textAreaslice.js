@@ -12,7 +12,10 @@ const toolkitListSlice = createSlice({
         undoStack: [],
         redoStack: [],
         textAreaSize:'100%',
-        fontColor:'black'
+        fontColor:false,
+        file: null,
+        textUnderLine: false,
+        isTextAlign : false,
 
     },
 
@@ -69,10 +72,19 @@ const toolkitListSlice = createSlice({
       setFontColor:(state,action)=>{
         state.fontColor = action.payload
       },
+      fileUpload:(state,action)=>{
+        state.file= action.payload
+      },
+      SetTextUnderLine:(state)=>{
+        state.textUnderLine = !state.textUnderLine
+      },
+      setIsTextAlign:(state)=>{
+        state.isTextAlign = !state.isTextAlign
+      }
     }
 },
 
 )
 
-export const { setCounter, setTextAreaValue, setFontSize, setPrintOut, printTextArea, toggleBold, toggleItalic, toggleRedoStack, toggleUndoStack, toggletextAreaSize ,setFontColor} = toolkitListSlice.actions;
+export const { setCounter, setTextAreaValue, setFontSize, setPrintOut, printTextArea, toggleBold, toggleItalic, toggleRedoStack, toggleUndoStack, toggletextAreaSize ,setFontColor,fileUpload,SetTextUnderLine,setIsTextAlign} = toolkitListSlice.actions;
 export default toolkitListSlice.reducer;

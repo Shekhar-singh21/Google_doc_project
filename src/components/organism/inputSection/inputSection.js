@@ -4,7 +4,7 @@ import AddIcon from '@mui/icons-material/Add';
 import { FormControl, TextField } from '@mui/material';
 import { BorderAll } from '@mui/icons-material';
 import { useDispatch, useSelector } from 'react-redux';
-import {setTextAreaValue,setFontSize,toggleBold,textAreaSize,setFontColor} from '../../store/slices/textAreaslice'
+import {setTextAreaValue,setFontSize,toggleBold,textAreaSize,setFontColor,fileUpload,SetTextUnderLine,setIsTextAlign} from '../../store/slices/textAreaslice'
 
 export default function InputSection() {
 
@@ -15,6 +15,9 @@ export default function InputSection() {
   const isItalic = useSelector((state)=>state.toolkitList.isItalic)
   const textAreaSize = useSelector((state)=>state.toolkitList.textAreaSize)
   const fontColor = useSelector((state)=> state.toolkitList.fontColor)
+  const file = useSelector((state)=>state.toolkitList.file)
+  const textUnderLine = useSelector((state)=>state.toolkitList.textUnderLine)
+  const isTextAlign = useSelector((state)=>state.toolkitList.isTextAlign)
 
   function getTextAreaValue(e){
     dispatch(setTextAreaValue(e.target.value))
@@ -39,7 +42,10 @@ export default function InputSection() {
           </div>
         </div>
         <div className={style.textfield}>
-         <textarea value={textAreaValue} onChange={getTextAreaValue} name="" id="" cols="110" rows="80" style={{width:textAreaSize,height:'100vh', outline:'none' ,Border:'1px solid #bdb6b5' , fontSize:`${12 + counter * 2}px` , fontWeight: isBold ? '900' : '200',fontStyle:isItalic?'italic':'normal' , color :fontColor?'back':'red'}} >
+         <textarea value={textAreaValue} onChange={getTextAreaValue} name="" id="" cols="110" rows="80" style={{width:textAreaSize,height:'100vh', outline:'none' ,Border:'1px solid #bdb6b5' , fontSize:`${12 + counter * 2}px` , fontWeight: isBold ? '900' : '200',fontStyle:isItalic?'italic':'normal' , color :fontColor?'red':'back' , textDecoration:textUnderLine? 'underLine':'none',  backgroundImage: file ? `url(${file})` : 'none',
+              backgroundSize: 'contain',
+              backgroundRepeat: 'no-repeat',
+              backgroundPosition: 'center',textAlign:isTextAlign?'center':'left'}} >
 
          </textarea>
         </div>
